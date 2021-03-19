@@ -3,6 +3,7 @@ const express = require('express')
 const massive = require('massive')
 const session = require('express-session')
 const authCtrl = require("./controllers/authController")
+const userCtrl = require("./controllers/userController")
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
 
@@ -36,10 +37,13 @@ massive({
 app.post("/auth/register", authCtrl.register)
 app.post("/auth/login", authCtrl.login)
 app.post("/auth/logout", authCtrl.logout)
-app.get('/auth/refresh', authCtrl.refresh)
-app.delete("/auth/delete", authCtrl.deleteUser)
-app.post("/forgotpassword", authCtrl.forgotPassword)
-app.put("/resetpassword/:passwordToken", authCtrl.resetPassword)
+
+app.get("/api/user", userCtrl.refresh)
+app.put("/api/user", userCtrl.editUser)
+app.delete("/api/user", userCtrl.deleteUser)
+app.post("/api/user/forgotpassword", userCtrl.forgotPassword)
+app.put("/api/user/resetpassword/:passwordToken", userCtrl.resetPassword)
+app.put("/api/user/changepassword", userCtrl.changePass)
 
 
 app.get('*', (req, res) => {
