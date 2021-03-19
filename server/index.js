@@ -4,6 +4,8 @@ const massive = require('massive')
 const session = require('express-session')
 const authCtrl = require("./controllers/authController")
 const userCtrl = require("./controllers/userController")
+const cpCtrl = require("./controllers/critterpediaController")
+const picCtrl = require("./controllers/picController")
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
 
@@ -44,6 +46,14 @@ app.delete("/api/user", userCtrl.deleteUser)
 app.post("/api/user/forgotpassword", userCtrl.forgotPassword)
 app.put("/api/user/resetpassword/:passwordToken", userCtrl.resetPassword)
 app.put("/api/user/changepassword", userCtrl.changePass)
+
+app.get("/api/critterpedia", cpCtrl.getCritterpedia)
+app.put("/api/critterpedia", cpCtrl.updateCritterpedia)
+
+app.get("/api/pic/:user_id", picCtrl.getProfilePic)
+app.get("/api/signs3", checkUser, picCtrl.config)
+app.post("/api/signs3", checkUser, picCtrl.deleteProfilePic)
+app.put("/api/user", checkUser, picCtrl.updateProfilePic)
 
 
 app.get('*', (req, res) => {
