@@ -1,5 +1,5 @@
 module.exports = {
-    getCritterpedia = async(req, res) => {
+    getCritterpedia: async(req, res) => {
         try {
             const db = req.app.get('db')
 
@@ -12,7 +12,7 @@ module.exports = {
         }
     },
 
-    updateCritterpedia = async(req, res) => {
+    updateCritterpedia: async(req, res) => {
         try {
             const db = req.app.get('db')
 

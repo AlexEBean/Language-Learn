@@ -6,6 +6,7 @@ const authCtrl = require("./controllers/authController")
 const userCtrl = require("./controllers/userController")
 const cpCtrl = require("./controllers/critterpediaController")
 const picCtrl = require("./controllers/picController")
+const { checkUser } = require("./middleware")
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
 
