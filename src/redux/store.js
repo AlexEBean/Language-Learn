@@ -1,7 +1,11 @@
-import {combineReducers, createStore} from 'redux'
+import { configureStore } from '@reduxjs/toolkit'
+import thunk from 'redux-thunk'
+import userReducer from "./reducers/user"
 
-const rootReducer = combineReducers({
-    
+export default configureStore({
+    reducer: {
+        user: userReducer,
+
+    },
+    middleware: [thunk]
 })
-
-export default createStore(rootReducer)
