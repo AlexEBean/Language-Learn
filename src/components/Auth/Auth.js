@@ -1,8 +1,8 @@
 import {useState, useEffect} from "react"
 import {useSelector, useDispatch} from 'react-redux'
 import {useHistory} from "react-router-dom"
-import {changeIsLoggingIn, login, selectError, selectIsLoggingIn, selectIsLoggedIn} from "../../redux/reducers/user"
-import "./Entry.sass"
+import {changeLoggingIn, login, selectError, selectLoggingIn, selectLoggedIn} from "../../redux/slices/userSlice"
+import "./Auth.sass"
 
 const Entry = () => {
     const [username, setUsername] = useState("")
@@ -15,8 +15,8 @@ const Entry = () => {
 
     const dispatch = useDispatch()
     const error = useSelector(selectError)
-    const loggingIn = useSelector(selectIsLoggingIn)
-    const loggedIn = useSelector(selectIsLoggedIn)
+    const loggingIn = useSelector(selectLoggingIn)
+    const loggedIn = useSelector(selectLoggedIn)
     const history = useHistory()
 
     useEffect(() => {
@@ -38,10 +38,11 @@ const Entry = () => {
                 setFilledOut(false)
             }
         }
+        console.log()
     }, [username, email, password, passwordCheck, region, passMatch, loggingIn])
 
     useEffect(() => {
-        if (loggedIn) { history.push("/") }
+        if (loggedIn) {history.push("/")}
     }, [loggedIn, history])
 
     const entryFn = e => {
@@ -62,8 +63,9 @@ const Entry = () => {
         {label: "Confirm password", type: "password", setState: setPasswordCheck}
     ]
 
-    const radioInputArr = [{label: "Northern", id: "northern"}, {label: "Southern", id: "southern"}]
     const inputsMapCheck = loggingIn ? inputsArr.splice(1, 2) : inputsArr
+
+    const radioInputArr = [{label: "Northern", id: "Northern"}, {label: "Southern", id: "Southern"}]
 
     return (
         <div className="page">
@@ -84,7 +86,7 @@ const Entry = () => {
                             <label className="input-label">Hemisphere</label>
                             <div id="radio-input-inner">
                                 {radioInputArr.map(radioInput => (
-                                    <div key={radioInput.label} id="radio-input-div">
+                                    <div key={radioInput.label} id="radio-input-container">
                                         <input 
                                             type = "radio"
                                             className = "radio-input"
@@ -103,10 +105,10 @@ const Entry = () => {
                     <input 
                         type = "button"
                         id = "change-state-button"
-                        onClick = {() => dispatch(changeIsLoggingIn())} 
+                        onClick = {() => dispatch(changeLoggingIn())} 
                         value = {loggingIn ? "Create an account?" : "Already have an account?"} 
                     />
-                    <button type = "submit" disabled={!filledOut} className="button">
+                    <button type = "submit" disabled = {!filledOut} className="button">
                         {loggingIn ? "Login" : "Create Account"}
                     </button>
                 </div>

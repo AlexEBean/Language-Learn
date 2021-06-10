@@ -35,13 +35,13 @@ export const userSlice = createSlice({
         changeLanguage: (state, action) => {
             state.lang = action.payload
         },
-        changeIsLoggingIn: state => {
-            state.isLoggingIn = !state.isLoggingIn
+        changeLoggingIn: state => {
+            state.loggingIn = !state.loggingIn
         }
     },
     extraReducers: {
         [login.fulfilled]: (state, action) => {
-            state.isLoggedIn = true
+            state.loggedIn = true
             state.user = action.payload
         },
         [login.rejected]: (state, action) => {
@@ -49,7 +49,7 @@ export const userSlice = createSlice({
         },
         [logout.fulfilled]: () => initialState,
         [getUserSession.fulfilled]: (state, action) => {
-            state.isLoggedIn = true
+            state.loggedIn = true
             state.status = "success"
             state.user = action.payload
         },
@@ -57,13 +57,13 @@ export const userSlice = createSlice({
     }
 })
 
-export const {changeLanguage, changeIsLoggingIn} = userSlice.actions
+export const {changeLanguage, changeLoggingIn} = userSlice.actions
 
 export const selectLanguage = state => state.user.lang
 export const selectUser = state => state.user.user
 export const selectError = state => state.user.error
-export const selectIsLoggingIn = state => state.user.loggingIn
-export const selectIsLoggedIn = state => state.user.loggedIn
+export const selectLoggingIn = state => state.user.loggingIn
+export const selectLoggedIn = state => state.user.loggedIn
 export const selectRegion = state => state.user.user.region
 
 export const selectUserState = state => state.user

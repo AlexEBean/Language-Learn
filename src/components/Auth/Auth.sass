@@ -1,0 +1,111 @@
+@import "../../styles/variables"
+
+#entry-form
+    width: 500px
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    align-items: center
+  
+#entry-inputs
+    width: 100%
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center 
+    
+.input-container
+    width: 40%
+    margin-top: 35px
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+
+.input-label
+    margin-bottom: 3px
+    font-size: 16px
+
+.input-input
+    height: 30px
+    margin-left: 10px
+    padding: 0 10px
+    border: 
+        width: 0 0 2px 0 
+        style: solid 
+        color: $input-underline-color
+    background-color: $input-background-color
+    color: $input-text-color
+    caret-color: $input-carret-color
+    font:
+        size: 15px
+        family: $font
+
+#passwords-do-not-match
+    color: red
+
+#radio-input-outer
+    width: 40%
+    margin-top: 35px
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+
+#radio-input-inner
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    margin-left: 10px
+
+#radio-input-container
+    display: flex
+    flex-direction: row
+    align-items: center
+    margin-top: 10px
+
+.radio-input
+    visibility: hidden
+    position: absolute
+    margin: 0
+
+.radio-input + label:before
+    height: 12px
+    width: 12px
+    margin-right: 5px
+    content: ' '
+    display: inline-block
+    vertical-align: baseline
+    border: 3px solid $font-color
+    border-radius: 50%
+
+.radio-input:checked + label:before
+    background: $font-color
+
+.radio-input-label
+    font-size: 10px
+    display: flex
+    flex-direction: row
+    align-items: center
+
+.radio-input-label:hover
+    cursor: pointer
+    
+#entry-buttons
+    margin: 40px 0 40px 0
+
+#change-state-button
+    border: none
+    background-color: transparent
+    color: $button-color
+    margin-right: 20px
+
+#change-state-button:hover
+    color: #24C4BE
+    cursor: pointer
+
+
+@media #{$smallest-screen-size}
+    #entry-form
+        width: 300px
+    .input-container
+        width: 60%
+      

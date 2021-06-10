@@ -18,10 +18,10 @@ module.exports = {
 
             const salt = bcrypt.genSaltSync(10)
             const hash = bcrypt.hashSync(password, salt)
+            
             req.body.password = hash
-
             req.body.profile_pic = `https://avatars.dicebear.com/api/identicon/${username}.svg`
-            req.body.region = "Northern"
+
             const [newUser] = await db.auth.register_user(req.body)
             await db.auth.register_critterpedia(newUser.user_id)
                     

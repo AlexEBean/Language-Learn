@@ -1,0 +1,28 @@
+@import "../../styles/variables"
+
+#header
+    width: 100%
+    position: relative
+    display: flex
+    flex-direction: row
+    justify-content: flex-end
+    align-items: center
+    height: 100px
+
+
+@media #{$smallest-screen-size}
+    #header
+        flex-direction: column
+        height: 75px
+
+
+// @media #{$small-screen-size}
+//     #header
+//         flex-direction: column
+//     #nav
+//         width: 100%
+// @media #{$medium-screen-size}
+//     #header
+//         flex-direction: column
+//     #nav
+//         width: 100%
